@@ -67,17 +67,6 @@ public class BookController {
         }
 }
 
-
-//    //delete book
-//    @DeleteMapping("/deleteBook/{id}")
-//    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long bookId) {
-//        Book employee = booksRepository.findById(bookId).get();
-//        booksRepository.delete(employee);
-//        Map<String, Boolean> response = new HashMap<>();
-//        response.put("deleted", Boolean.TRUE);
-//        return response;
-//    }
-
     @DeleteMapping("/deleteBook/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteBook(@PathVariable(value = "id") Long bookId) {
         Optional<Book> optionalBook = bookService.getBookById(bookId);
@@ -93,4 +82,6 @@ public class BookController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
 }

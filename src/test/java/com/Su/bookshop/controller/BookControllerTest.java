@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 class BookControllerTest {
@@ -89,5 +90,46 @@ class BookControllerTest {
         verify(bookService, times(1)).getBookById(bookId);
         verify(bookService, times(1)).deleteBook(book);
     }
+    @Test
+    void updateBook_ExistingBookId_ReturnsUpdatedBook() {
+        // Arrange
+        Long bookId = 1L;
+        Book existingBook = new Book();
+        existingBook.setId(bookId);
+
+        Book updatedBookDetails = new Book();
+        updatedBookDetails.setBook_name("Updated Book Name");
+        updatedBookDetails.setAuthor_name("Updated Author Name");
+        // Set other updated book details
+
+        Optional<Book> optionalBook = Optional.of(existingBook);
+        when(bookService.getBookById(bookId)).thenReturn(optionalBook);
+        when(bookService.updateBook(existingBook)).thenReturn(updatedBookDetails);
+
+        // Act
+        ResponseEntity<Book> response = bookController.updateBook(bookId, updatedBookDetails);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(updatedBookDetails, response.getBody());
+        verify(bookService, times(1)).getBookById(bookId);
+        verify(bookService, times(1)).updateBook(existingBook);
+    }
+
+    @Test
+    void getBookById_NonExistingBookId_ReturnsNotFound2() {
+        // Arrange
+        Long nonExistingBookId = 100L;
+        when(bookService.getBookById(nonExistingBookId)).thenReturn(Optional.empty());
+
+        // Act
+        ResponseEntity<Book> response = bookController.getBookById(nonExistingBookId);
+
+        // Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+        verify(bookService, times(1)).getBookById(nonExistingBookId);
+    }
+
 
 }
