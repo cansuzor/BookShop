@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "68c58843-b8ae-474c-8691-7c28c9ca2c98",
+		"name": "BookTutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26806097"
+	},
+	"item": [
+		{
+			"name": "HelloWorld",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllBooks",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/book/helloworld"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"book_name\": \"Life of Cansu Zor\",\n     \"author_name\": \"Cansu Zor\",\n     \"genre\": \"horror\"\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/book/updateBook/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Post New Book",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Book",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
