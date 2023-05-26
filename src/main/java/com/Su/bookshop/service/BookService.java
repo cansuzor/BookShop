@@ -2,6 +2,7 @@ package com.Su.bookshop.service;
 
 import com.Su.bookshop.model.Book;
 import com.Su.bookshop.repository.BooksRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class BookService {
+    @Autowired
     private final BooksRepository booksRepository;
 
     public BookService(BooksRepository booksRepository) {

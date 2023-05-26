@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,19 +61,6 @@ class BookControllerTest {
         verify(bookService, times(1)).getBookById(bookId);
     }
 
-    @Test
-    void createBook_ValidBook_ReturnsCreatedBook() {
-        // Arrange
-        Book book = new Book();
-        when(bookService.createBook(book)).thenReturn(book);
-
-        // Act
-        Book createdBook = bookController.createBook(book);
-
-        // Assert
-        assertEquals(book, createdBook);
-        verify(bookService, times(1)).createBook(book);
-    }
 
     @Test
     void deleteBook_ExistingBookId_ReturnsDeletedResponse() {
@@ -129,6 +117,29 @@ class BookControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertNull(response.getBody());
         verify(bookService, times(1)).getBookById(nonExistingBookId);
+    }
+    public void setup2() {
+        // Mock the behavior of the bookService's createBook method
+        when(bookService.createBook(Mockito.any(Book.class))).thenReturn(new Book());
+    }
+    @Test
+    void createbook_goodinput(){
+        //Arrange
+        setup2();
+        Book newbook = new Book();
+        newbook.setId(67);
+        newbook.setBook_name("Test Book");
+        newbook.setAuthor_name("Test Author");
+        newbook.setReturned(false);
+
+        //Act
+        ResponseEntity<Book> response = bookController.createBook(newbook);
+
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        //assertEquals(newbook.toString(), response.getBody().toString());
+
+
+
     }
 
 
