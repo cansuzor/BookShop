@@ -1,19 +1,11 @@
 {
 	"info": {
 		"_postman_id": "68c58843-b8ae-474c-8691-7c28c9ca2c98",
-		"name": "BookTutorial",
+		"name": "Book",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "26806097"
 	},
 	"item": [
-		{
-			"name": "HelloWorld",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
 		{
 			"name": "GetAllBooks",
 			"request": {

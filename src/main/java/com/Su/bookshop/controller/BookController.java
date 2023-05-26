@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/books")
 public class BookController {
     @Autowired
     private BooksRepository booksRepository;
